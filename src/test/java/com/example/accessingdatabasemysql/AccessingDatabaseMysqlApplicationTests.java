@@ -2,8 +2,10 @@ package com.example.accessingdatabasemysql;
 
 import com.example.accessingdatabasemysql.controller.MainController;
 import com.example.accessingdatabasemysql.entity.User;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class AccessingDatabaseMysqlApplicationTests {
+public class AccessingDatabaseMysqlApplicationTests {
 
 	/* host */
 	@Value("${access.host}")
@@ -37,7 +39,7 @@ class AccessingDatabaseMysqlApplicationTests {
 	private MainController controller;
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 		assertThat(controller).isNotNull();
 	}
 
