@@ -42,4 +42,10 @@ public class MainController {
         // This returns a JSON or XML with the users
         return userRepository.findOneById(id);
     }
+
+    @DeleteMapping(path="/user/delete")
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    public void deleteUser( @RequestParam Integer id) {
+        userRepository.deleteById(id);
+    }
 }
