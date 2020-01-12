@@ -13,6 +13,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -21,11 +22,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+// @ActiveProfiles("test")
 public class AccessingDatabaseMysqlApplicationTests {
 
 	/* host */
 	@Value("${access.host}")
 	private String accessHost;
+
+	@Value("${server.port}")
+	private String serverPort;
+
+	@Value("${mysql.host}")
+	private String mysqlUrl;
+
+	@Value("${env.running}")
+	private String envRunning;
+
 
 	/* random port */
 	@LocalServerPort
@@ -40,6 +52,8 @@ public class AccessingDatabaseMysqlApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		System.out.println("---- RANDOM_PORT:port["+port+"] prop.srver.port["+serverPort+"]");
+		System.out.println(" mysqlUrl["+mysqlUrl+"] env.running["+envRunning+"]");
 		assertThat(controller).isNotNull();
 	}
 

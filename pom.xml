@@ -62,10 +62,42 @@
 			<version>2.13.1</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<deploy.type>dev</deploy.type>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<deploy.type>test</deploy.type>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<deploy.type>prod</deploy.type>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
+		<resources>
+			<resource>
+			<!--把相对应的独特资源(dev,test,prod这三种的一种)声明，排除jsp文件-->
+				<directory>src/main/resources/env/${deploy.type}</directory>
+			</resource>
+			<resource>
+				<!--声明公共资源-->
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
